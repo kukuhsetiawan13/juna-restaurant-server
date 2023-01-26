@@ -1,0 +1,100 @@
+[
+    {
+        "name": "Super Supreme",
+        "toppings": "Ground beef, chicken ham, pepperoni, sausages, onions, olives, paprica",
+        "price": 19.99,
+        "picture": "https://i1.wp.com/thepizzalads.com/wp-content/uploads/2017/08/Super-Supreme-Pizza-Hut-Pizza-Review.jpg?fit=590%2C440&ssl=1",
+        "additionalInfos": ["beef", "chicken", "best-seller"]
+    },
+    {
+        "name": "Meat Lovers",
+        "toppings": "Pepperoni, sausages, ham, mozarella, tomatoes",
+        "price": 18.99,
+        "picture": "http://iamafoodblog.com/wp-content/uploads/2015/10/meatlovers-pizza-8w.jpg",
+        "additionalInfos": ["beef", "best-seller"]
+    },
+    {
+        "name": "Triple Cheese",
+        "toppings": "Mozarella, cheddar, parmesan",
+        "price": 19.99,
+        "picture": "https://assets.website-files.com/5df16fba6ec9f6f23930b21d/5df16fba6ec9f63cab30b3a2_triple-cheese.jpg",
+        "additionalInfos": ["vegetarian", "best-seller"]
+    },
+    {
+        "name": "Spicy Chicken",
+        "toppings": "Chicken chunks, spicy chicken ham, onion, tomatoes",
+        "price": 15.99,
+        "picture": "https://cookingtv-channel.com/wp-content/uploads/60337898_2225817140859090_918059528786804736_n-2.jpg",
+        "additionalInfos": ["spicy", "chicken"]
+    },
+    {
+        "name": "Pepperoni",
+        "toppings": "Beef pepperoni, mozarella cheese",
+        "price": 18.99,
+        "picture": "https://www.smilepizza.com.ua/uploads/%D0%9F%D0%B5%D0%BF%D0%BF%D0%B5%D1%80%D0%BE%D0%BD%D0%B8.jpg",
+        "additionalInfos": ["beef"]
+    },
+    {
+        "name": "Smoked chicken",
+        "toppings": "Smoked chicken chunks, chicken ham, basil, pinneaples, chicken ham, tomatoes",
+        "price": 16.99,
+        "picture": "https://1.bp.blogspot.com/-DyWjhpSxU4A/Ty1oL_dR55I/AAAAAAAABcE/VtDnPlZ4hOU/s1600/IMG_7774.jpg",
+        "additionalInfos": ["chicken"]
+    },
+    {
+        "name": "Veggie",
+        "toppings": "Pinneaples chunks, mushrooms, onions, olives, basil, paprica, diced tomatoes",
+        "price": 15.99,
+        "picture": "https://i0.wp.com/munchyesta.com/wp-content/uploads/2020/07/vegetarian-pizza.jpg?fit=1200%2C857&ssl=1",
+        "additionalInfos": ["vegetarian"]
+    },
+    {
+        "name": "Tropical",
+        "toppings": "Chicken ham, pinneaple chunks",
+        "price": 17.99,
+        "picture": "https://4.bp.blogspot.com/-HYCSoeJYGEo/V83zCxzz18I/AAAAAAAAAOY/_FkriIuiYxoRY3nxbvz3d_KMxMy7ISG-QCLcB/s1600/positano.jpg",
+        "additionalInfos": ["chicken"]
+    },
+    {
+        "name": "Seafood Deluxe",
+        "toppings": "Tuna, prawn, squid, pinneaple chunks, tomatoes",
+        "price": 19.99,
+        "picture": "https://1.bp.blogspot.com/-q9IXWgkT9yQ/WAlylk_pPPI/AAAAAAAAAOs/lEHren0Dh9ALZJwhpakzFfdGNc8Sbs_NgCLcB/s1600/Seafood%2BDeluxe%2BSingapore%2Bpizza%2Bhut%2Bmenu.png",
+        "additionalInfos": ["fish"]
+    },
+    {
+        "name": "Margharita",
+        "toppings": "Mozarella cheese, basil, tomatoes",
+        "price": 14.99,
+        "picture": "https://www.abeautifulplate.com/wp-content/uploads/2015/08/the-best-homemade-margherita-pizza-1-4-600x858.jpg",
+        "additionalInfos": ["vegetarian"]
+    },
+    {
+        "name": "Aglio Olio",
+        "toppings": "Spaghetti, tuna, mushrooms, paprica",
+        "price": 14.99,
+        "picture": "https://i.pinimg.com/originals/92/5c/57/925c570ce246cc82c593a39c7d5b2f1c.jpg",
+        "additionalInfos": []
+    },
+    {
+        "name": "Beef spaghetti",
+        "toppings": "Spaghetti, minced beef, tomatoes, cheese",
+        "price": 17.99,
+        "picture": "https://i2.wp.com/www.angsarap.net/wp-content/uploads/2018/12/Corned-Beef-Spaghetti-Wide.jpg?fit=1080%2C720&ssl=1",
+        "additionalInfos": []
+    },
+    {
+        "name": "Creamy Truffle",
+        "toppings": "Pasta, sausages, basil, truffle oil",
+        "price": 17.99,
+        "picture": "https://giorgiotruffleshop.com/wp-content/uploads/2019/02/instant-pot-macaroni-and-cheese-with-spinach-and-artichokes.jpg",
+        "additionalInfos": []
+    },
+    {
+        "name": "Beef Lasagna",
+        "toppings": "Lasagna pasta, minced beef, tomatoes",
+        "price": 16.99,
+        "picture": "https://cdn11.bigcommerce.com/s-pipoqsdedl/images/stencil/1920w/products/136/517/beef-lasagna-square__43610.1622488754.jpg?c=1",
+        "additionalInfos": []
+    }
+]
