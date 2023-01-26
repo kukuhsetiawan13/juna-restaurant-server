@@ -11,13 +11,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Food.hasMany(models.Order)
     }
   }
   Food.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: 'Name must be provided.'},
+        notEmpty: {msg: 'Name must be provided.'},
+      }
+    },
     toppings: DataTypes.STRING,
-    price: DataTypes.FLOAT,
-    picture: DataTypes.STRING,
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+      validate: {
+        notNull: {msg: 'Price must be provided.'},
+        notEmpty: {msg: 'Price must be provided.'}
+      }
+    },
+    picture: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: 'Picture must be provided.'},
+        notEmpty: {msg: 'Picture must be provided.'},
+      }
+    },
     additionalInfos: DataTypes.STRING
   }, {
     sequelize,
