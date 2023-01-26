@@ -12,6 +12,14 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    const foodList = require('../data/data.json')
+
+    for(let food of foodList) {
+      food.createdAt = food.updatedAt = new Date()
+      food.additionalInfos = food.additionalInfos.join(", ")
+    }
+
+    await queryInterface.bulkInsert('Food', foodList)
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,5 +29,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Food')
   }
 };
