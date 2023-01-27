@@ -61,6 +61,7 @@ class Controller {
             if(!TransactionId) throw ('Transaction ID must be provided.')
 
             const transaction = await Transaction.findByPk(TransactionId)
+            if(!transaction) throw ('Data not found.')
 
             const orders = await Order.findAll({
                 where: {

@@ -2,14 +2,14 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "juna-mart",
+    "database": "juna-restaurant",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "postgres",
-    "database": "juna-mart_test",
+    "database": "juna-restaurant_test",
     "host": "localhost",
     "dialect": "postgres"
   },
