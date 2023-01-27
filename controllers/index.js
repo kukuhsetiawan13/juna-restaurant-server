@@ -55,7 +55,26 @@ class Controller {
 
     static async getTransaction(req, res, next) {
         try {
-            res.json('get transaction')
+
+            const {TransactionId} = req.body
+
+            if(!TransactionId) throw ('Transaction ID must be provided.')
+
+            const transaction = await Transaction.findByPk(TransactionId)
+
+            const orders = await Order.findAll({
+                where: {
+                    TransactionId
+                },
+                include: 'Food'
+            })
+
+            const response = {
+                ...transaction.dataValues,
+                orders
+            }
+
+            res.json(response)
 
         } catch(err) {
             next(err)

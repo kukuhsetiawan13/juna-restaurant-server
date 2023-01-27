@@ -188,7 +188,7 @@ describe('transaction routes', function() {
               "price": 14.99,
             },
           ]
-        })
+      })
       expect(response.status).toEqual(400);
       expect(response.body).toMatchObject({
         message: expect.stringContaining('Total items must be an integer.')
@@ -199,22 +199,42 @@ describe('transaction routes', function() {
 
   describe('GET /transaction', function() {
     it(`should return list of orders from specific transaction and table id`, async function() {
+      const newTransactionResponse = await request(app)
+        .post('/transaction')
+        .send({
+          tableId: 1,
+          orders: [
+            {
+              "FoodId": 3,
+              "name": "Triple Cheese",
+              "price": 19.99,
+              "quantity": 2
+            },
+            {
+              "FoodId": 11,
+              "name": "Aglio Olio",
+              "price": 14.99,
+              "quantity": 3
+            },
+          ]
+      })
+
       const response = await request(app)
         .get('/transaction')
         .send({
-          tableId: 1,
-          transactionId: 1
+          TransactionId: newTransactionResponse.body.id
         })
+        console.log(response.body, "ini test") 
       expect(response.status).toEqual(200);
       expect(response.body).toBeInstanceOf(Object)
       expect(response.body).toHaveProperty("tableId", expect.any(Number))
       expect(response.body).toHaveProperty("totalItems", expect.any(Number))
       expect(response.body).toHaveProperty("totalPrice", expect.any(Number))   
       expect(response.body.orders[0]).toHaveProperty("FoodId", expect.any(Number))
-      expect(response.body.orders[0]).toHaveProperty("TransactionId", expect.any(String))
+      expect(response.body.orders[0]).toHaveProperty("TransactionId", expect.any(Number))
       expect(response.body.orders[0]).toHaveProperty("price", expect.any(Number))
       expect(response.body.orders[0]).toHaveProperty("quantity", expect.any(Number))
-      expect(response.body.orders[0]).toHaveProperty("Genre", expect.objectContaining({
+      expect(response.body.orders[0]).toHaveProperty("Food", expect.objectContaining({
         name: expect.any(String),
         toppings: expect.any(String),
         price: expect.any(Number),
