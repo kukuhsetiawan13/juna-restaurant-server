@@ -1,5 +1,5 @@
 const { sequelize } = require('../models')
-const { Food, Transaction } = require('../models')
+const { Food, Transaction, Order } = require('../models')
 const { Op } = require("sequelize");
 
 
@@ -16,9 +16,39 @@ class Controller {
     }
 
     static async createTransactions(req, res, next) {
+        const t = await sequelize.transaction();
         try {
-            res.json('transactions')            
+            const { tableId, orders } = req.body 
+            
+            if(!orders || orders.length === 0) throw ('Orders must be provided.')
+
+            const totalItems = orders.reduce((total, item) => total + item.quantity, 0)
+            const totalPrice = orders.reduce((total, item) => total + item.price, 0)
+
+            const newTransaction = await Transaction.create({
+                tableId,
+                totalItems,
+                totalPrice
+            }, {transaction: t})
+
+            for(let order of orders) {
+                await Order.create({
+                    TransactionId: newTransaction.id,
+                    FoodId: order.FoodId,
+                    price: order.price,
+                    quantity: order.quantity
+                }, {transaction: t})
+            }
+
+            const response = {
+                ...newTransaction.dataValues,
+                orders
+            }
+
+            await t.commit();
+            res.status(201).json(response)
         } catch(err) {
+            await t.rollback();
             next(err)
         }
     }

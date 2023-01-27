@@ -6,7 +6,12 @@ const errorHandler = (err, req, res, next) => {
     if (err.name === 'SequelizeValidationError') {
       code = 400
       message = err.errors[0].message
-    } else if (err === 'Price must be provided!' || err === 'Orders must be provided!' || err === 'Table ID and Transaction ID must be provided!')  {
+    } else if ([
+      'Price must be provided.',
+      'Orders must be provided.',
+      'Table ID must be provided.',
+      'Transaction ID must be provided.'
+    ].includes(err))  {
       code = 400
       message = err
     }

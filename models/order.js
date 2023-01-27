@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Food ID must be provided.'},
         notEmpty: {msg: 'Food ID must be provided.'},
+        isInt: {msg: 'Food ID must be an integer.'},
       }
     },
     TransactionId: {
@@ -30,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Transaction ID must be provided.'},
         notEmpty: {msg: 'Transaction ID must be provided.'},
+        isInt: {msg: 'Transaction ID must be an integer.'},
       }
     },
     quantity: {
@@ -38,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Quantity must be provided.'},
         notEmpty: {msg: 'Quantity must be provided.'},
+        isInt: {msg: 'Quantity must be an integer.'},
       }
     },
     price: {
@@ -46,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Price must be provided.'},
         notEmpty: {msg: 'Price must be provided.'},
+        isFloat: {msg: 'Price must be in float format.'},
       }
     }
   }, {

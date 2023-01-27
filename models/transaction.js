@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Table ID must be provided.'},
         notEmpty: {msg: 'Table ID must be provided.'},
+        isInt: {msg: 'Table ID must be an integer.'},
       }
     },
     totalItems: {
@@ -29,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Total items must be provided.'},
         notEmpty: {msg: 'Total items must be provided.'},
+        isInt: {msg: 'Total items must be an integer.'},
       }
     },
     totalPrice: {
@@ -37,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {msg: 'Total price must be provided.'},
         notEmpty: {msg: 'Total price must be provided.'},
+        isFloat: {msg: 'Total price must be in float format.'},
       }
     },
   }, {
