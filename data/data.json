@@ -84,7 +84,7 @@
         "toppings": "Spaghetti, tuna, mushrooms, paprica",
         "price": 14.99,
         "picture": "https://i.pinimg.com/originals/92/5c/57/925c570ce246cc82c593a39c7d5b2f1c.jpg",
-        "additionalInfos": [],
+        "additionalInfos": ["fish"],
         "type": "Pasta"
     },
     {
@@ -92,15 +92,15 @@
         "toppings": "Spaghetti, minced beef, tomatoes, cheese",
         "price": 17.99,
         "picture": "https://i2.wp.com/www.angsarap.net/wp-content/uploads/2018/12/Corned-Beef-Spaghetti-Wide.jpg?fit=1080%2C720&ssl=1",
-        "additionalInfos": [],
+        "additionalInfos": ["beef"],
         "type": "Pasta"
     },
     {
         "name": "Creamy Truffle",
-        "toppings": "Pasta, sausages, basil, truffle oil",
+        "toppings": "Pasta, basil, truffle oil",
         "price": 17.99,
         "picture": "https://giorgiotruffleshop.com/wp-content/uploads/2019/02/instant-pot-macaroni-and-cheese-with-spinach-and-artichokes.jpg",
-        "additionalInfos": [],
+        "additionalInfos": ["vegetarian"],
         "type": "Pasta"
     },
     {
@@ -108,14 +108,14 @@
         "toppings": "Lasagna pasta, minced beef, tomatoes",
         "price": 16.99,
         "picture": "https://cdn11.bigcommerce.com/s-pipoqsdedl/images/stencil/1920w/products/136/517/beef-lasagna-square__43610.1622488754.jpg?c=1",
-        "additionalInfos": [],
+        "additionalInfos": ["beef"],
         "type": "Pasta"
     },
     {
         "name": "French Fries",
         "toppings": "",
         "price": 9.99,
-        "picture": "https://i.pinimg.com/originals/34/ef/9e/34ef9e203e44848fb10efda06ce12be5.jpg",
+        "picture": "https://www.corriecooks.com/wp-content/uploads/2018/08/Instant-Pot-French-Fries.jpg",
         "additionalInfos": [],
         "type": "Side Dish"
     },
@@ -131,7 +131,7 @@
         "name": "Vanilla Ice Cream",
         "toppings": "",
         "price": 5.99,
-        "picture": "https://blogapi.desty.app/uploads/Ilustrasi_mixue_ice_cream_69a350b767.jpg",
+        "picture": "http://iadorefood.com/wp-content/uploads/2012/01/IMG_80121.jpg",
         "additionalInfos": [],
         "type": "Drinks and Desserts"
     }
