@@ -40,7 +40,8 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {msg: 'Picture must be provided.'},
       }
     },
-    additionalInfos: DataTypes.STRING
+    additionalInfos: DataTypes.STRING,
+    type: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Food',
