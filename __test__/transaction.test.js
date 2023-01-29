@@ -5,16 +5,22 @@ const {sequelize} = require('../models')
 
 
 
-const foodList = require('../data/data.json')
+const foodList = require('../data/food.json')
 foodList.forEach(el => {
     el.createdAt = el.updatedAt = new Date()
     el.additionalInfos = el.additionalInfos.join(", ")
+})
+
+const coupons = require('../data/coupon.json')
+coupons.forEach(el => {
+    el.createdAt = el.updatedAt = new Date()
 })
 
 
 beforeAll( async () => {
     try {
         await sequelize.queryInterface.bulkInsert('Food', foodList)
+        await sequelize.queryInterface.bulkInsert('Coupons', coupons)
     } catch (err) {
         console.log(err)
     }
@@ -28,6 +34,11 @@ afterAll( async () => {
             restartIdentity: true,
             cascade: true
         })
+        await sequelize.queryInterface.bulkDelete('Coupons', null, {
+          truncate: true,
+          restartIdentity: true,
+          cascade: true
+      })
     } catch(err) {
         console.log(err)
     }

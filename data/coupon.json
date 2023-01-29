@@ -4,13 +4,15 @@
         "type": "discount",
         "discount": 10,
         "freeItem": "",
-        "minimumPurchase": 100  
+        "minimumPurchase": 100,
+        "backgroundImage": "https://www.teahub.io/photos/full/32-327924_pizza-background.jpg"  
     },
     {
         "name": "FREELEMONADE",
         "type": "freeItem",
         "discount": "",
         "freeItem": "Ice Tea Lemonade",
-        "minimumPurchase": 40      
+        "minimumPurchase": 40,
+        "backgroundImage": "https://wallpaperfx.com/view_image/fresh-lemonade-1920x1080-wallpaper-15829.jpg"
     }
 ]

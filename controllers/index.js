@@ -82,64 +82,6 @@ class Controller {
         }
     }
 
-    static async getTransaction(req, res, next) {
-        try {
-
-            const {TransactionId} = req.body
-
-            if(!TransactionId) throw ('Transaction ID must be provided.')
-
-            const transaction = await Transaction.findByPk(TransactionId)
-            if(!transaction) throw ('Data not found.')
-
-            const orders = await Order.findAll({
-                where: {
-                    TransactionId
-                },
-                include: 'Food'
-            })
-
-            const response = {
-                ...transaction.dataValues,
-                orders
-            }
-
-            res.json(response)
-
-        } catch(err) {
-            next(err)
-        }
-    }
-
-    static async getTransaction(req, res, next) {
-        try {
-
-            const {TransactionId} = req.body
-
-            if(!TransactionId) throw ('Transaction ID must be provided.')
-
-            const transaction = await Transaction.findByPk(TransactionId)
-            if(!transaction) throw ('Data not found.')
-
-            const orders = await Order.findAll({
-                where: {
-                    TransactionId
-                },
-                include: 'Food'
-            })
-
-            const response = {
-                ...transaction.dataValues,
-                orders
-            }
-
-            res.json(response)
-
-        } catch(err) {
-            next(err)
-        }
-    }
-
     static async getCoupons (req, res, next) {
         try {
             const coupons = await Coupon.findAll()

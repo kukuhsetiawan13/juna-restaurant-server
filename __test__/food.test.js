@@ -5,7 +5,7 @@ const {sequelize} = require('../models')
 
 
 
-const foodList = require('../data/data.json')
+const foodList = require('../data/food.json')
 foodList.forEach(el => {
     el.createdAt = el.updatedAt = new Date()
     el.additionalInfos = el.additionalInfos.join(", ")
