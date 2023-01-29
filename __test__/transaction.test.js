@@ -45,10 +45,10 @@ afterAll( async () => {
 }) 
 
 describe('transaction routes', function() {
-  describe('POST /transaction', function() {
+  describe('POST /transaction/create', function() {
     it(`should succesfully add transaction`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1,
           orders: [
@@ -82,7 +82,7 @@ describe('transaction routes', function() {
 
     it(`should responds with error message: 'Table ID must be provided.' and status 400`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           orders: [
             {
@@ -107,7 +107,7 @@ describe('transaction routes', function() {
 
     it(`should responds with error message: 'Orders must be provided.' and status 400`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1
         })
@@ -120,7 +120,7 @@ describe('transaction routes', function() {
 
     it(`should responds with error message: 'Orders must be provided.' and status 400`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1,
           orders: []
@@ -133,7 +133,7 @@ describe('transaction routes', function() {
 
     it(`should responds with error message: 'Food ID must be provided.' and status 400`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1,
           orders: [
@@ -158,7 +158,7 @@ describe('transaction routes', function() {
 
     it(`should responds with error message: 'Total price must be in float format.' and status 400`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1,
           orders: [
@@ -183,7 +183,7 @@ describe('transaction routes', function() {
 
     it(`should responds with error message: 'Total items must be an integer.' and status 400`, async function() {
       const response = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1,
           orders: [
@@ -208,10 +208,13 @@ describe('transaction routes', function() {
   });
 
 
-  describe('GET /transaction', function() {
+  describe('POST /transaction/find', function() {
+    const d = new Date()
+    const date = d.getDate()
+
     it(`should return list of orders from specific transaction and table id`, async function() {
       const newTransactionResponse = await request(app)
-        .post('/transaction')
+        .post('/transaction/create')
         .send({
           tableId: 1,
           orders: [
@@ -231,9 +234,10 @@ describe('transaction routes', function() {
       })
 
       const response = await request(app)
-        .get('/transaction')
+        .post('/transaction/find')
         .send({
-          TransactionId: newTransactionResponse.body.id
+          TransactionId: newTransactionResponse.body.id,
+          securityCode: date
         })
         console.log(response.body, "ini test") 
       expect(response.status).toEqual(200);
@@ -256,13 +260,27 @@ describe('transaction routes', function() {
 
     it(`should return message: 'Transaction ID must be provided.`, async function() {
       const response = await request(app)
-        .get('/transaction')
+        .post('/transaction/find')
         .send({
           tableId: 1,
+          securityCode: date
         })
       expect(response.status).toEqual(400);
       expect(response.body).toMatchObject({
         message: expect.stringContaining('Transaction ID must be provided.')
+      })
+    });
+
+    it(`should return error 403`, async function() {
+      const response = await request(app)
+        .post('/transaction/find')
+        .send({
+          tableId: 1,
+          TransactionId: 3,
+        })
+      expect(response.status).toEqual(403);
+      expect(response.body).toMatchObject({
+        message: expect.stringContaining('Forbidden.')
       })
     });
 

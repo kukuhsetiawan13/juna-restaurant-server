@@ -42,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
         isFloat: {msg: 'Total price must be in float format.'},
       }
     },
+    coupon: {
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'Transaction',

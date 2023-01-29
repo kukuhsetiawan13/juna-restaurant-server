@@ -18,17 +18,21 @@ class Controller {
     static async createTransactions(req, res, next) {
         const t = await sequelize.transaction();
         try {
-            const { tableId, orders } = req.body 
-            
+            const { tableId, orders, coupon } = req.body 
+          
             if(!orders || orders.length === 0) throw ('Orders must be provided.')
 
             const totalItems = orders.reduce((total, item) => total + item.quantity, 0)
-            const totalPrice = orders.reduce((total, item) => total + item.price, 0)
+            let totalPrice = orders.reduce((total, item) => total + (item.price * item.quantity), 0)
+            totalPrice *= 1.1
+
+            if(coupon?.type === 'discount') totalPrice -= Number(coupon.discount)
 
             const newTransaction = await Transaction.create({
                 tableId,
                 totalItems,
-                totalPrice
+                totalPrice,
+                coupon: coupon?.name
             }, {transaction: t})
 
             for(let order of orders) {
@@ -42,7 +46,8 @@ class Controller {
 
             const response = {
                 ...newTransaction.dataValues,
-                orders
+                orders,
+                coupon: coupon?.name || 'No Coupon'
             }
 
             await t.commit();
@@ -56,7 +61,11 @@ class Controller {
     static async getTransaction(req, res, next) {
         try {
 
-            const {TransactionId} = req.body
+            const { TransactionId, securityCode } = req.body
+
+            const d = new Date();
+
+            if(!securityCode || Number(securityCode) !== d.getDate()) throw ('Forbidden.')
 
             if(!TransactionId) throw ('Transaction ID must be provided.')
 
@@ -94,9 +103,10 @@ class Controller {
 
     static async verifyCoupon (req, res, next) {
         try {
-            const {coupon} = req.body
+            const {coupon, subTotal} = req.body
 
             if(!coupon) throw ('Coupon must be provided.')
+            if(!subTotal) throw (`You haven't reached minimum amount`)
 
             const theSearchedCoupon = await Coupon.findOne({
                 where: {
@@ -106,7 +116,9 @@ class Controller {
                 }
             })
 
-            if(!theSearchedCoupon) throw ('Data not found.')
+            if(!theSearchedCoupon) throw ('Invalid Coupon.')
+
+            if(subTotal < theSearchedCoupon.minimumPurchase) throw (`You haven't reached minimum amount`)
 
             res.status(200).json(theSearchedCoupon)
         } catch(err) {

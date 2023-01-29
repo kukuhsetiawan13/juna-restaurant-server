@@ -12,7 +12,9 @@ const errorHandler = (err, req, res, next) => {
       'Orders must be provided.',
       'Table ID must be provided.',
       'Transaction ID must be provided.',
-      'Coupon must be provided.'
+      'Coupon must be provided.',
+      `You haven't reached minimum amount`,
+      'Invalid Coupon.'
     ].includes(err))  {
       code = 400
       message = err
@@ -21,6 +23,10 @@ const errorHandler = (err, req, res, next) => {
       'Data not found.'
     ].includes(err)) {
       code = 404
+      message = err
+    }
+    else if(err === 'Forbidden.') {
+      code = 403
       message = err
     }
 

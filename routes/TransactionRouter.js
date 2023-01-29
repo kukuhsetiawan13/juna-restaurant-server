@@ -2,9 +2,9 @@ const router = require('express').Router()
 const Controller = require('../controllers')
 
 
-router.post('', Controller.createTransactions)
+router.post('/create', Controller.createTransactions)
 
-router.get('', Controller.getTransaction)
+router.post('/find', Controller.getTransaction)
 
 
 module.exports = router

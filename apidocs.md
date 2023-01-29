@@ -3,8 +3,11 @@
 List of Available Endpoints:
 - `GET /food`
 
-- `POST /transaction`
-- `GET /transaction`
+- `POST /transaction/create`
+- `POST /transaction/find`
+
+- `POST /coupons/verify`
+- `GET /coupons`
 
 &nbsp;
 
@@ -46,7 +49,7 @@ _200 - OK_
 
 &nbsp;
 
-### 2. POST /transaction
+### 2. POST /transaction/create
 #### Description
 - Create a new transaction with orders
 
@@ -68,7 +71,18 @@ _200 - OK_
             "price": Float | required,
             "quantity": Integer | required
             }
-        ]
+        ],
+        "coupon": {
+            "id": Integer,
+            "name": String,
+            "type": String,
+            "discount": String,
+            "freeItem": String,
+            "minimumPurchase": Float,
+            "backgroundImage": String,
+            "createdAt": String,
+            "updatedAt": String
+        },
     }
     ```
     
@@ -83,6 +97,17 @@ _Response (201 - Created)_
     "totalPrice": 34.98,
     "updatedAt": "2023-01-27T02:55:49.148Z",
     "createdAt": "2023-01-27T02:55:49.148Z",
+    "coupon": {
+        "id": 1,
+        "name": "PIZZAFEST",
+        "type": "discount",
+        "discount": "10",
+        "freeItem": "",
+        "minimumPurchase": 100,
+        "backgroundImage": "https://www.teahub.io/photos/full/32-327924_pizza-background.jpg",
+        "createdAt": "2023-01-29T13:30:55.550Z",
+        "updatedAt": "2023-01-29T13:30:55.550Z"
+    },
     "orders": [
         {
             "FoodId": 3,
@@ -158,10 +183,14 @@ _400 - Bad Request_
     {
         "Price must be in float format."
     }
+    OR
+    {
+        "Orders must be provided."
+    }
     ```
 &nbsp;
 
-### 3. GET /transaction
+### 3. POST /transaction/find
 #### Description
 - Fetch transaction with orders by transaction ID
 
@@ -169,7 +198,8 @@ _400 - Bad Request_
 - Body
     ```json
     {
-      "TransactionId": Integer | required
+      "TransactionId": Integer | required,
+      "securityCode": Integer
     }
     ```
 #### Response
@@ -181,6 +211,7 @@ _200 - Ok
     "tableId": 1,
     "totalItems": 6,
     "totalPrice": 34.98,
+    "coupon": "FREELEMONADE",
     "createdAt": "2023-01-27T02:55:49.148Z",
     "updatedAt": "2023-01-27T02:55:49.148Z",
     "orders": [
@@ -226,6 +257,15 @@ _200 - Ok
     ]
   }
     ```
+```
+Response (403 - Forbidden)_
+
+  ```json
+  {
+    "message": "Forbidden."
+  }
+  ```
+&nbsp;
 
 Response (404 - Not Found)_
 
@@ -235,6 +275,92 @@ Response (404 - Not Found)_
   }
   ```
 &nbsp;
+
+### 4. POST /coupons/verify
+#### Description
+- Verify whether a coupon is valid or not
+
+#### Request
+- Body
+    ```json
+    {
+        "TransactionId": Number,
+        "subTotal": Number
+    }
+    ```
+    
+#### Response
+_Response (200 - Ok)_
+
+```json
+{
+    "id": 2,
+    "name": "FREELEMONADE",
+    "type": "freeItem",
+    "discount": "",
+    "freeItem": "Ice Tea Lemonade",
+    "minimumPurchase": 40,
+    "backgroundImage": "https://c4.wallpaperflare.com/wallpaper/904/941/123/fresh-lemonade-wallpaper-preview.jpg",
+    "createdAt": "2023-01-29T13:30:55.551Z",
+    "updatedAt": "2023-01-29T13:30:55.551Z"
+}
+```
+
+_400 - Bad Request_
+- Body
+    ```json
+    {
+        "Coupon must be provided."
+    }
+    OR
+    {
+        "You haven't reached minimum amount."
+    }
+    OR
+    {
+        "Invalid Coupon."
+    }
+    ```
+&nbsp;
+
+### 5. GET /coupons
+#### Description
+- Fetch coupons
+
+
+#### Response
+_200 - Ok
+- Body
+    ```json
+   [
+        {
+            "id": 1,
+            "name": "PIZZAFEST",
+            "type": "discount",
+            "discount": "10",
+            "freeItem": "",
+            "minimumPurchase": 100,
+            "backgroundImage": "https://www.teahub.io/photos/full/32-327924_pizza-background.jpg",
+            "createdAt": "2023-01-29T13:30:55.550Z",
+            "updatedAt": "2023-01-29T13:30:55.550Z"
+        },
+        {
+            "id": 2,
+            "name": "FREELEMONADE",
+            "type": "freeItem",
+            "discount": "",
+            "freeItem": "Ice Tea Lemonade",
+            "minimumPurchase": 40,
+            "backgroundImage": "https://c4.wallpaperflare.com/wallpaper/904/941/123/fresh-lemonade-wallpaper-preview.jpg",
+            "createdAt": "2023-01-29T13:30:55.551Z",
+            "updatedAt": "2023-01-29T13:30:55.551Z"
+        },
+        ```
+    ]
+    ```
+```
+
+
 
 
 
@@ -251,3 +377,4 @@ _500 - Internal Server Error_
     }
     ```
 &nbsp;
+

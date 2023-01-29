@@ -52,12 +52,13 @@ describe('coupon routes', function() {
         });
     });
 
-    describe('GET /coupons/verify', function() {
+    describe('POST /coupons/verify', function() {
         it('should respond with verified coupon with status 200', async function() {
           const response = await request(app)
-            .get('/coupons/verify')
+            .post('/coupons/verify')
             .send({
-                coupon: 'PIZZAFEST'
+                coupon: 'PIZZAFEST',
+                subTotal: 110
               })
           expect(response.status).toEqual(200);
           expect(response.body).toBeInstanceOf(Object)
@@ -74,7 +75,7 @@ describe('coupon routes', function() {
 
         it('should respond with error 400', async function() {
             const response = await request(app)
-              .get('/coupons/verify')
+              .post('/coupons/verify')
               .send({
                   coupon: ''
                 })
@@ -84,15 +85,16 @@ describe('coupon routes', function() {
             })
           });
 
-          it('should respond with error 404', async function() {
+          it('should respond with error 400', async function() {
             const response = await request(app)
-              .get('/coupons/verify')
+              .post('/coupons/verify')
               .send({
-                  coupon: 'PIZZAFES'
+                  coupon: 'PIZZAFES',
+                  subTotal: 110
                 })
-            expect(response.status).toEqual(404);
+            expect(response.status).toEqual(400);
             expect(response.body).toMatchObject({
-                message: expect.stringContaining('Data not found.')
+                message: expect.stringContaining('Invalid Coupon.')
             })
           });
     });
