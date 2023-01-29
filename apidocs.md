@@ -54,22 +54,22 @@ _200 - OK_
 - Body
     ```json
     {
-    "tableId": Integer,
-    "orders": [
-        {
-        "FoodId": Integer,
-        "name": String,
-        "price": Float | required,
-        "quantity": Integer | required
-        },
-        {
-        "FoodId": Integer | required,
-        "name": String,
-        "price": Float | required,
-        "quantity": Integer | required
-        }
-    ]
-  }
+        "tableId": Integer,
+        "orders": [
+            {
+            "FoodId": Integer,
+            "name": String,
+            "price": Float | required,
+            "quantity": Integer | required
+            },
+            {
+            "FoodId": Integer | required,
+            "name": String,
+            "price": Float | required,
+            "quantity": Integer | required
+            }
+        ]
+    }
     ```
     
 #### Response

@@ -12,14 +12,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const foodList = require('../data/food.json')
+    const coupons = require('../data/coupon.json')
 
-    for(let food of foodList) {
-      food.createdAt = food.updatedAt = new Date()
-      food.additionalInfos = food.additionalInfos.join(", ")
+    for(let coupon of coupons) {
+      coupon.createdAt = coupon.updatedAt = new Date()
     }
 
-    await queryInterface.bulkInsert('Food', foodList)
+    await queryInterface.bulkInsert('Coupons', coupons)
   },
 
   async down (queryInterface, Sequelize) {
@@ -29,6 +28,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Food')
+    await queryInterface.bulkDelete('Coupons')
   }
 };

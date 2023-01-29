@@ -1,0 +1,16 @@
+[
+    {
+        "name": "PIZZAFEST",
+        "type": "discount",
+        "discount": 10,
+        "freeItem": "",
+        "minimumPurchase": 100  
+    },
+    {
+        "name": "FREELEMONADE",
+        "type": "freeItem",
+        "discount": "",
+        "freeItem": "Ice Tea Lemonade",
+        "minimumPurchase": 40      
+    }
+]
