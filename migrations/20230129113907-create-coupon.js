@@ -26,6 +26,9 @@ module.exports = {
       minimumPurchase: {
         type: Sequelize.FLOAT
       },
+      backgroundImage: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

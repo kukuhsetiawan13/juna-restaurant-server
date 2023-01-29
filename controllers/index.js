@@ -1,5 +1,5 @@
 const { sequelize } = require('../models')
-const { Food, Transaction, Order } = require('../models')
+const { Food, Transaction, Order, Coupon } = require('../models')
 const { Op } = require("sequelize");
 
 
@@ -77,6 +77,96 @@ class Controller {
 
             res.json(response)
 
+        } catch(err) {
+            next(err)
+        }
+    }
+
+    static async getTransaction(req, res, next) {
+        try {
+
+            const {TransactionId} = req.body
+
+            if(!TransactionId) throw ('Transaction ID must be provided.')
+
+            const transaction = await Transaction.findByPk(TransactionId)
+            if(!transaction) throw ('Data not found.')
+
+            const orders = await Order.findAll({
+                where: {
+                    TransactionId
+                },
+                include: 'Food'
+            })
+
+            const response = {
+                ...transaction.dataValues,
+                orders
+            }
+
+            res.json(response)
+
+        } catch(err) {
+            next(err)
+        }
+    }
+
+    static async getTransaction(req, res, next) {
+        try {
+
+            const {TransactionId} = req.body
+
+            if(!TransactionId) throw ('Transaction ID must be provided.')
+
+            const transaction = await Transaction.findByPk(TransactionId)
+            if(!transaction) throw ('Data not found.')
+
+            const orders = await Order.findAll({
+                where: {
+                    TransactionId
+                },
+                include: 'Food'
+            })
+
+            const response = {
+                ...transaction.dataValues,
+                orders
+            }
+
+            res.json(response)
+
+        } catch(err) {
+            next(err)
+        }
+    }
+
+    static async getCoupons (req, res, next) {
+        try {
+            const coupons = await Coupon.findAll()
+
+            res.status(200).json(coupons)
+        } catch(err) {
+            next(err)
+        }
+    }
+
+    static async verifyCoupon (req, res, next) {
+        try {
+            const {coupon} = req.body
+
+            if(!coupon) throw ('Coupon must be provided.')
+
+            const theSearchedCoupon = await Coupon.findOne({
+                where: {
+                    name: {
+                        [Op.iLike]: coupon,
+                    }
+                }
+            })
+
+            if(!theSearchedCoupon) throw ('Data not found.')
+
+            res.status(200).json(theSearchedCoupon)
         } catch(err) {
             next(err)
         }

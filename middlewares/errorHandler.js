@@ -11,7 +11,8 @@ const errorHandler = (err, req, res, next) => {
       'Price must be provided.',
       'Orders must be provided.',
       'Table ID must be provided.',
-      'Transaction ID must be provided.'
+      'Transaction ID must be provided.',
+      'Coupon must be provided.'
     ].includes(err))  {
       code = 400
       message = err

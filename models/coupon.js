@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     discount: DataTypes.STRING,
     freeItem: DataTypes.STRING,
-    minimumPurchase: DataTypes.FLOAT
+    minimumPurchase: DataTypes.FLOAT,
+    backgroundImage: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Coupon',
