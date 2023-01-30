@@ -1,3 +1,4 @@
+const { NODE_ENV } = process.env;
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
