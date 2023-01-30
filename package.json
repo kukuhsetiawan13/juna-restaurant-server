@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand --coverage=true --forceExit",
-    "start": "nodemon bin/www",
+    "start": "npx nodemon bin/www",
     "databaseSetup": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "databaseSetupTest": "sequelize --env test db:drop && sequelize --env test db:create && sequelize --env test db:migrate"
   },
